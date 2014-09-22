@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Find the Box</title>
+    <style>
+    	h1{
+    		color: #3E828A;
+    		text-align: center;
+    	}
+    	div{
+    		text-align: center;
+    	}
+		li{
+			border-style: solid;
+			height: 60px;
+			width:60px;
+			display: inline-block;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		body{
+			background-color: #EBF0F0;
+		}
+		#status{				
+			font-weight: bold;
+			font-size: 40px;
+		}
+    </style>
+  </head>
+  <header>
+  	<h1>Which box did I pick? Can you guess?
+  	</h1>
+  </header>	
+  <body>
+    <div id="page">
+    	<ul id="boxes">
+		</ul>
+    </div>
+    <div>
+    	<div id="clicker">Counter: 0</div>
+    	<div id="status"></div>
+    </div>
+  </body> 
+  <script src="jquery-1.11.0.js"></script>
+  <script>
+  	var numBoxes = 10;
+   	for(var i=0;i<=numBoxes;i++){
+  		$('#boxes').append('<li></li>');
+  	}
+  	var star = Math.floor(Math.random()*numBoxes)+1;
+  	var numClicks = 0;
+  	$("li").click(function(){
+  		numClicks += 1;	
+  		if($(this).index() == star){
+  			$(this).css("background-color","#24FF7B");
+  			if(numClicks<3){
+  				$("#status").html("You are better at this than I imagined!");
+  			}
+  			else if(3<numClicks<7){
+  				
+  				$("#status").html("I have seen better players!");
+  			}
+  			else{
+  				$("#status").html("I'd rather you didn't play!");
+  			}
+  		}
+  		else{
+  			$(this).css("background-color","#FF331C");		
+  		} 		
+	    $("#clicker").html("Counter: " + numClicks);
+  	});
+  </script>
+</html>
